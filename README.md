@@ -1,34 +1,25 @@
+# 🚘 Car-Agencies-Rental
+
 <div align="center">
 
-# 🚘 CarAgencies MVC
+### **Enterprise-Grade Car Rental Fleet Management & Leasing Lifecycle Platform**
 
-### **Modern Cloud-Ready Fleet Telemetry & Multi-Branch Car Rental Platform**
-
-*A production-grade, enterprise-scale management system engineered with ASP.NET Core 8, EF Core, and SQL Server.*
+*Built with ASP.NET Core 8 MVC, Entity Framework Core 8, Microsoft SQL Server 2022, and Docker.*
 
 <br/>
 
-[![Framework](https://img.shields.io/badge/ASP.NET_Core_8.0-MVC-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
-[![Language](https://img.shields.io/badge/C%23_12-Enterprise-239120?style=for-the-badge&logo=c-sharp&logoColor=white)](https://learn.microsoft.com/dotnet/csharp/)
-[![Database](https://img.shields.io/badge/SQL_Server_2022-Latest-CC292B?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)](https://www.microsoft.com/sql-server)
-[![ORM](https://img.shields.io/badge/EF_Core-8.0.8-512BD4?style=for-the-badge&logo=nuget&logoColor=white)](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore)
+[![.NET 8.0](https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![C# 12](https://img.shields.io/badge/C%23-12.0-239120?style=for-the-badge&logo=c-sharp&logoColor=white)](https://learn.microsoft.com/dotnet/csharp/)
+[![ASP.NET Core MVC](https://img.shields.io/badge/ASP.NET_Core-MVC-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/apps/aspnet/mvc)
+[![EF Core](https://img.shields.io/badge/EF_Core-8.0.8-512BD4?style=for-the-badge&logo=nuget&logoColor=white)](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore)
+[![SQL Server 2022](https://img.shields.io/badge/SQL_Server-2022-CC292B?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)](https://www.microsoft.com/sql-server)
+[![Bootstrap 5](https://img.shields.io/badge/Bootstrap-5.3.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![Docker](https://img.shields.io/badge/Docker-Orchestrated-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
-[![UI Kit](https://img.shields.io/badge/Bootstrap-5.3.3_Dark_Kit-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-[![Security](https://img.shields.io/badge/Identity-RBAC_+_Ownership-00599C?style=for-the-badge&logo=auth0&logoColor=white)](https://learn.microsoft.com/aspnet/core/security/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
 <br/>
 
-```
-  ┌────────────────────────────────────────────────────────────────────────────────────────┐
-  │  ⚡ Real-Time Fleet Availability  •  💰 Dynamic Auto-Pricing  •  🛡️ Resource Ownership │
-  │  🐳 Multi-Stage Docker Cluster   •  📊 Executive Analytics    •  📜 Full Audit Logs    │
-  └────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
-<br/>
-
-[🌟 Platform Highlights](#-platform-highlights) • [📊 Analytics & Metrics](#-system-telemetry--metrics) • [🏗️ System Architecture](#-system-architecture--blueprints) • [🗄️ Relational Schema](#-relational-database-schema) • [🔄 Workflows](#-transactional-workflows) • [🚀 Quick Start](#-quick-start--deployment)
+**[⚡ Features](#-features) • [📊 Analytics & Metrics](#-analytics--metrics) • [🏗️ Architecture](#-system-architecture) • [🗄️ Database ERD](#-database-schema--erd) • [🔄 Workflows](#-operational-workflows) • [🚀 Quick Start](#-quick-start)**
 
 ---
 
@@ -36,142 +27,129 @@
 
 <br/>
 
-## 🌟 Platform Highlights
+## ⚡ Features
 
-<table>
-<tr>
-<td width="50%" valign="top">
+### 🏢 Multi-Branch Agency Management
+- Manage multiple independent car rental branches across different geographic locations.
+- Complete branch directory with contact details, foundation dates, and cascading fleet management.
 
-### ⚡ **Operational Engine**
-* **Dynamic Fee Calculation:** Contracts automatically compute total lease pricing server-side based on vehicle daily rates and duration:
-  $$\text{Total Price} = \max(1, \Delta\text{Days}) \times \text{Daily Rate}$$
-* **State-Synchronized Fleet:** Vehicles atomically toggle between `Available`, `Rented`, and `UnderMaintenance` upon checkout and return.
-* **Cascading Branch Governance:** Comprehensive agency hierarchy with safe deletion cascades and integrity restrictions.
+### 🚗 Dynamic Fleet Inventory & Availability Tracking
+- Real-time vehicle availability management (`Available`, `Rented`, `UnderMaintenance`).
+- Comprehensive vehicle catalog including brand, model, manufacturing year, license plate, and daily rates.
+- Multi-parameter filtering by operating agency and vehicle status.
 
-</td>
-<td width="50%" valign="top">
+### 💰 Automated Rental Pricing Engine
+- Server-side automatic price calculation based on rental duration and vehicle daily rates:
+  $$\text{Total Price} = \max(1, \text{Days}) \times \text{Daily Rate}$$
+- Prevents client-side price tampering and eliminates manual calculation errors.
+- Automatic atomic status transition: vehicle flips to `Rented` on booking, and back to `Available` on return.
 
-### 🛡️ **Enterprise Security & Architecture**
-* **Identity & Ownership Guard:** Custom resource authorization locks edit and delete operations to the exact operator who created the record (`CreatedByUserId`).
-* **Anti-Tamper CSRF Guards:** Cryptographic token verification on every mutating HTTP POST request.
-* **Concurrency Locking:** Real-time handling of `DbUpdateConcurrencyException` during simultaneous edits.
+### 👥 Customer & Driver Directory
+- Dedicated customer registry recording full name, phone number, email, and driving license number.
+- Relational audit history showing all historical and current bookings per customer.
 
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
+### 🛡️ Enterprise Security & Resource-Level Ownership
+- Full user authentication powered by **ASP.NET Core Identity** with cookie sessions.
+- **Resource Ownership Guards:** Users can view shared agency data, but edit and delete operations are restricted strictly to the user who created the record (`CreatedByUserId`).
+- Cryptographic CSRF protection via `[ValidateAntiForgeryToken]` on all state-altering requests.
+- Concurrency conflict handling (`DbUpdateConcurrencyException`).
 
-### 🎨 **Executive UI / UX Design**
-* **Custom Dark Theme System:** 788 lines of crafted CSS featuring navy backgrounds (`#0D1117`), electric gradients, card glassmorphism, and responsive stat grids.
-* **Instant Filtering & Search:** Multi-parameter search by brand, model, status, license plate, customer name, and contact number.
+### 📊 Executive KPI Dashboard
+- Centralized real-time overview displaying total branches, active leases, available vehicles, and cumulative rental revenue.
+- Quick-action shortcuts and an audit table of recent rental transactions.
 
-</td>
-<td width="50%" valign="top">
-
-### 🐳 **Cloud-Native Deployment**
-* **Multi-Stage Docker Pipeline:** Compiles with SDK 8.0 image and serves through a hardened ASP.NET Core 8 Alpine runtime container.
-* **Probed Multi-Service Mesh:** Docker Compose healthcheck integration using `sqlcmd` to ensure SQL Server 2022 availability before web app initialization.
-
-</td>
-</tr>
-</table>
+### 🎨 Modern Dark-Themed UI Kit
+- Built with a custom 788-line CSS design system (`site.css`) on top of Bootstrap 5.3.3.
+- Features deep navy themes, glassmorphism cards, responsive tables, badge pills, and unobtrusive client-side validation.
 
 ---
 
-## 📊 System Telemetry & Metrics
+## 📊 Analytics & Metrics
 
-### 📈 Core Architecture Benchmarks
+### 📈 Platform Technical Breakdown
 
-| Metric Dimension | Real Value | Architecture Description |
+| Metric Dimension | Real Value | Description |
 | :--- | :---: | :--- |
-| **Target Framework** | `net8.0` | C# 12 running on ASP.NET Core 8 LTS runtime |
-| **Controller Actions** | **40 Endpoints** | Distributed across 6 domain controllers |
-| **Database Entities** | **11 Tables** | 4 core business domains + 7 ASP.NET Identity tables |
-| **Presentation Layer** | **21 Views** | Strongly-typed Razor `.cshtml` views with 6 ViewModels |
-| **Custom Styling** | **788 Lines** | High-contrast modern dark design system (`site.css`) |
-| **Seed Fleet Assets** | **4 Vehicles** | Across 2 agencies with 300.00 EGP initial transaction volume |
-| **Container Footprint** | **2 Services** | Web container (`:8080`) + SQL Server container (`:1433`) |
+| **Framework Target** | `.NET 8.0` | C# 12 running on ASP.NET Core 8 MVC |
+| **HTTP Action Endpoints** | **40 Endpoints** | Distributed across 6 MVC controllers |
+| **Database Tables** | **11 Tables** | 4 Domain tables + 7 ASP.NET Identity tables |
+| **Razor Views** | **21 Views** | Strongly-typed `.cshtml` templates with 6 ViewModels |
+| **Custom Styling** | **788 Lines** | Custom dark design system in `site.css` |
+| **Docker Containers** | **2 Services** | Web Application (`:8080`) + SQL Server 2022 (`:1433`) |
+| **Seed Fleet Assets** | **4 Cars** | 2 Agencies, 2 Customers, 2 Initial Rentals |
 
 <br/>
 
-### 📊 Seed Fleet Pricing Distribution & Vehicle Daily Rates
+### 📊 Fleet Availability Breakdown
 
 ```mermaid
-xychart-beta
-    title "Vehicle Daily Rental Rates (EGP per Day)"
-    x-axis ["Chevrolet Optra", "Hyundai Elantra", "Toyota Corolla", "Kia Sportage"]
-    y-axis "Daily Rate (EGP)" 0 --> 50
-    bar [25, 30, 35, 45]
+pie title Fleet Status Distribution
+    "Available (3 Vehicles)" : 75
+    "Under Maintenance (1 Vehicle)" : 25
 ```
 
 <br/>
 
-### 📊 Initial System Resource Allocation
+### 📊 Seed Vehicle Daily Rates Comparison (EGP)
 
 ```
-Fleet Availability Ratio:
-[██████████████████████████████░░░░░░░░░░] 75% Available (3 Available / 1 Maintenance)
-
-Database Entity Distribution:
-├── Business Domain Entities : 36.4% [████████████░░░░░░░░░░░░░░░░░░░░] (4 Tables)
-└── Identity Security Tables : 63.6% [█████████████████████░░░░░░░░░░░] (7 Tables)
+Chevrolet Optra    [25.00 EGP]  █████████████░░░░░░░░░░░░░░░
+Hyundai Elantra    [30.00 EGP]  ████████████████░░░░░░░░░░░░
+Toyota Corolla     [35.00 EGP]  ███████████████████░░░░░░░░░
+Kia Sportage       [45.00 EGP]  ████████████████████████░░░░
 ```
 
 ---
 
-## 🏗️ System Architecture & Blueprints
+## 🏗️ System Architecture
 
-### 1. High-Level System Blueprint
+### 1. End-to-End System Blueprint
 
 ```mermaid
 flowchart TD
-    subgraph ClientZone[" 🌐 Client Tier "]
-        direction TB
-        BROWSER["Modern Browser (Desktop / Mobile)"]
-        UI["Dark UI Kit (Bootstrap 5.3.3 + Custom CSS)"]
-        JS["Unobtrusive Validation & Tooltips (jQuery + site.js)"]
+    subgraph ClientTier[" 🌐 Client Tier "]
+        UI["Bootstrap 5.3.3 + Dark UI Kit"]
+        JS["jQuery 3.7.1 + Unobtrusive Validation"]
+        BROWSER["Web Browser"]
         BROWSER --- UI --- JS
     end
 
-    subgraph SecurityGateway[" 🛡️ Security & Middleware Pipeline "]
-        direction TB
-        AUTHN["Authentication Middleware (ASP.NET Core Identity Cookie)"]
-        CSRF["Anti-Forgery Token Verification ([ValidateAntiForgeryToken])"]
-        OWNER_GUARD["Resource Ownership Access Guard (CreatedByUserId)"]
-        AUTHN --> CSRF --> OWNER_GUARD
+    subgraph SecurityTier[" 🛡️ Security & Middleware Gateway "]
+        AUTH["ASP.NET Core Identity (Cookie Auth)"]
+        CSRF["Anti-Forgery Token Guard"]
+        OWNER["Resource Ownership Gatekeeper (CreatedByUserId)"]
+        AUTH --> CSRF --> OWNER
     end
 
-    subgraph AppControllers[" ⚡ Application Controller Services "]
-        HOME["HomeController\n(KPIs & Revenue Aggregations)"]
-        AGY["AgenciesController\n(Agency Branch CRUD)"]
-        CAR["CarsController\n(Fleet Inventory & Status Filtering)"]
-        CUST["CustomersController\n(Client Registry & License Verification)"]
-        RENT["RentalsController\n(Booking Engine & Price Automator)"]
-        ACC["AccountController\n(Registration & Multi-Identifier Login)"]
+    subgraph AppTier[" ⚡ Application MVC Controllers "]
+        HOME["HomeController (KPI Dashboard)"]
+        AGY["AgenciesController (Branch CRUD)"]
+        CAR["CarsController (Fleet Catalog)"]
+        CUST["CustomersController (Client Directory)"]
+        RENT["RentalsController (Booking Engine)"]
+        ACC["AccountController (Identity Management)"]
     end
 
-    subgraph DataTier[" 🗄️ Persistence & Storage Engine "]
-        direction TB
-        EF["Entity Framework Core 8.0.8 (LINQ Provider)"]
-        SEEDER["DbInitializer (Automatic Seeder & Bootstrapper)"]
-        DB[("Microsoft SQL Server 2022\n(Agencies, Cars, Customers, Rentals, Identity)")]
-        SEEDER --> EF --> DB
+    subgraph DataTier[" 🗄️ Persistence & Storage "]
+        EF["Entity Framework Core 8.0.8"]
+        DB[("Microsoft SQL Server 2022\n(LocalDB / Docker Container)")]
+        EF --> DB
     end
 
-    ClientZone ==>|HTTPS / Secure HTTP| SecurityGateway
-    SecurityGateway ==> HOME & AGY & CAR & CUST & RENT & ACC
-    HOME & AGY & CAR & CUST & RENT & ACC ==> EF
+    ClientTier ==> SecurityTier
+    SecurityTier ==> AppTier
+    AppTier ==> DataTier
 ```
 
 ---
 
-### 2. Entity-Relationship Data Model (ERD)
+## 🗄️ Database Schema & ERD
 
 ```mermaid
 erDiagram
-    AGENCY ||--o{ CAR : "owns / operates"
-    CAR ||--o{ RENTAL : "booked in"
-    CUSTOMER ||--o{ RENTAL : "executes"
+    AGENCY ||--o{ CAR : "owns"
+    CAR ||--o{ RENTAL : "assigned to"
+    CUSTOMER ||--o{ RENTAL : "rents"
     ASPNETUSERS ||--o{ AGENCY : "created by"
     ASPNETUSERS ||--o{ CAR : "created by"
     ASPNETUSERS ||--o{ CUSTOMER : "created by"
@@ -179,266 +157,187 @@ erDiagram
 
     AGENCY {
         int AgencyId PK
-        string Name "nvarchar(100)"
-        string Address "nvarchar(200)"
-        string PhoneNumber "nvarchar"
-        string Email "nvarchar (Nullable)"
+        string Name
+        string Address
+        string PhoneNumber
+        string Email
         datetime FoundedOn
-        string CreatedByUserId "FK to AspNetUsers"
+        string CreatedByUserId FK
     }
 
     CAR {
         int CarId PK
-        string Brand "nvarchar(50)"
-        string Model "nvarchar(50)"
-        int Year "1990 - 2100"
-        string PlateNumber "Unique Index"
-        decimal DailyRate "decimal(10,2)"
-        int Status "Available | Rented | Maintenance"
+        string Brand
+        string Model
+        int Year
+        string PlateNumber UK
+        decimal DailyRate
+        int Status
         int AgencyId FK
-        string CreatedByUserId "FK to AspNetUsers"
+        string CreatedByUserId FK
     }
 
     CUSTOMER {
         int CustomerId PK
-        string FullName "nvarchar(100)"
-        string PhoneNumber "nvarchar"
-        string Email "nvarchar (Nullable)"
-        string DrivingLicenseNumber "nvarchar(30)"
-        string CreatedByUserId "FK to AspNetUsers"
+        string FullName
+        string PhoneNumber
+        string Email
+        string DrivingLicenseNumber
+        string CreatedByUserId FK
     }
 
     RENTAL {
         int RentalId PK
-        int CarId FK "Restrict Delete"
-        int CustomerId FK "Restrict Delete"
+        int CarId FK
+        int CustomerId FK
         datetime StartDate
         datetime EndDate
-        decimal TotalPrice "decimal(10,2) Computed"
-        int Status "Active | Completed | Cancelled"
-        string CreatedByUserId "FK to AspNetUsers"
+        decimal TotalPrice
+        int Status
+        string CreatedByUserId FK
     }
 
     ASPNETUSERS {
-        string Id PK "nvarchar(450)"
+        string Id PK
         string UserName
         string Email
         string PasswordHash
     }
 ```
 
+### Relational Integrity Rules:
+- **Agency ➔ Cars:** `Cascade Delete` — Deleting an agency cascades to remove all associated cars.
+- **Car ➔ Rentals:** `Restrict Delete` — Vehicles with active or historical rental contracts cannot be deleted.
+- **Customer ➔ Rentals:** `Restrict Delete` — Customer records with associated contracts cannot be deleted.
+- **Plate Number:** Unique index constraint on `Cars.PlateNumber`.
+
 ---
 
-### 3. Rental Agreement Sequence & Transaction Flow
+## 🔄 Operational Workflows
+
+### 1. Rental Booking Transaction Sequence
 
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Operator as 👤 Agency Operator
-    participant Client as 🖥️ Razor View Engine
+    actor User as 👤 Operator
+    participant View as 🖥️ Razor View
     participant Ctrl as 🎮 RentalsController
-    participant EF as ⚡ EF Core Context
+    participant EF as ⚡ EF Core
     participant DB as 🗄️ SQL Server
 
-    Operator->>Client: Selects Car, Customer, StartDate & EndDate
-    Client->>Ctrl: POST /Rentals/Create (Anti-Forgery Token + Form)
-    Ctrl->>Ctrl: Validate EndDate > StartDate
-    Ctrl->>EF: Query Car by CarId
+    User->>View: Fills Booking Form (Car, Customer, Dates)
+    View->>Ctrl: POST /Rentals/Create
+    Ctrl->>Ctrl: Validate (EndDate > StartDate)
+    Ctrl->>EF: Fetch Selected Car
     EF->>DB: SELECT * FROM Cars WHERE CarId = @id
-    DB-->>EF: Return Car Details & Status
+    DB-->>EF: Return Car Record
     Ctrl->>Ctrl: Verify Car.Status == Available
-    Ctrl->>Ctrl: Compute TotalPrice = Days * Car.DailyRate
-    Ctrl->>Ctrl: Update Car.Status = CarStatus.Rented
-    Ctrl->>Ctrl: Stamp Rental.CreatedByUserId = CurrentUserId
-    Ctrl->>EF: Add Rental & Update Car
-    EF->>DB: BEGIN TRANSACTION -> INSERT Rental -> UPDATE Car -> COMMIT
-    DB-->>EF: Transaction Committed
-    Ctrl-->>Client: RedirectToAction("Index") with TempData["Success"]
-    Client-->>Operator: Display Dashboard with Updated Active Rentals & Locked Car
+    Ctrl->>Ctrl: Calculate TotalPrice = Days * DailyRate
+    Ctrl->>Ctrl: Set Car.Status = Rented
+    Ctrl->>Ctrl: Stamp CreatedByUserId = CurrentUserId
+    Ctrl->>EF: Insert Rental & Update Car
+    EF->>DB: COMMIT TRANSACTION
+    DB-->>EF: Success
+    Ctrl-->>View: Redirect to /Rentals/Index with Success Alert
+    View-->>User: Display Updated Dashboard
 ```
 
 ---
 
-### 4. Vehicle & Rental Lifecycle State Machine
+### 2. Vehicle & Rental Lifecycle State Machine
 
 ```mermaid
 stateDiagram-v2
     direction LR
 
-    [*] --> Available : Vehicle Enrolled in Agency
+    [*] --> Available: Car Registered
 
     state Available {
-        description: Status = CarStatus.Available
-        ready: Ready for Customer Booking
+        Ready: Ready for Booking
     }
 
     state Rented {
-        description: Status = CarStatus.Rented
-        locked: Vehicle Locked in Contract
+        Locked: Assigned to Customer
     }
 
-    state UnderMaintenance {
-        description: Status = CarStatus.UnderMaintenance
-        servicing: Mechanical Check or Repair
+    state Maintenance {
+        Servicing: Mechanical Checkup
     }
 
-    state ActiveRental {
-        description: Rental.Status = RentalStatus.Active
-    }
-
-    state CompletedRental {
-        description: Rental.Status = RentalStatus.Completed
-    }
-
-    Available --> Rented : POST /Rentals/Create
-    Available --> UnderMaintenance : Operator Updates Car Status
-    UnderMaintenance --> Available : Maintenance Finished
-
-    Rented --> ActiveRental : Contract Active
-    ActiveRental --> CompletedRental : POST /Rentals/Return/{id}
-    CompletedRental --> Available : Vehicle Freed to Inventory
+    Available --> Rented: Create Rental
+    Available --> Maintenance: Mark Under Maintenance
+    Maintenance --> Available: Maintenance Complete
+    Rented --> Available: Return Rental (Status = Completed)
 ```
 
 ---
 
-## 🗄️ Relational Database Schema
+## 🌐 API & Controller Routes
 
-The database architecture is designed with **Entity Framework Core 8 Code-First** principles, featuring strict referential integrity rules and audit stamping:
+### 🔐 Account Management (`/Account`)
+| Method | Route | Description | Access |
+| :---: | :--- | :--- | :---: |
+| `GET` | `/Account/Register` | Operator registration page | Public |
+| `POST` | `/Account/Register` | Process registration and sign in | Public |
+| `GET` | `/Account/Login` | Operator sign-in page | Public |
+| `POST` | `/Account/Login` | Validate credentials and issue cookie | Public |
+| `POST` | `/Account/Logout` | Terminate session and clear cookie | Authenticated |
 
-```
-CarAgenciesDb
-│
-├── 📁 1. Fleet & Catalog Domain
-│   ├── Agencies                         # Branch network
-│   │   ├── AgencyId                     # [PK] Identity
-│   │   ├── Name, Address, Phone, Email  # Contact & geolocation details
-│   │   ├── FoundedOn                    # Historical operational timestamp
-│   │   └── CreatedByUserId              # [Audit] Creator user identifier
-│   │
-│   └── Cars                             # Fleet inventory
-│       ├── CarId                        # [PK] Identity
-│       ├── Brand, Model, Year           # Automotive specifications
-│       ├── PlateNumber                  # [Unique Index] Official registration tag
-│       ├── DailyRate                    # [decimal(10,2)] Base daily rental price
-│       ├── Status                       # [Enum] Available (0), Rented (1), UnderMaintenance (2)
-│       ├── AgencyId                     # [FK -> Agencies] Cascade Delete on Agency Removal
-│       └── CreatedByUserId              # [Audit] Creator user identifier
-│
-├── 📁 2. Customer & Driver Domain
-│   └── Customers                        # Client registry
-│       ├── CustomerId                   # [PK] Identity
-│       ├── FullName, PhoneNumber, Email # Contact information
-│       ├── DrivingLicenseNumber         # Official driver credential
-│       └── CreatedByUserId              # [Audit] Creator user identifier
-│
-├── 📁 3. Transaction & Booking Domain
-│   └── Rentals                          # Lease agreements
-│       ├── RentalId                     # [PK] Identity
-│       ├── CarId                        # [FK -> Cars] Restrict Delete (Historical Protection)
-│       ├── CustomerId                   # [FK -> Customers] Restrict Delete (Historical Protection)
-│       ├── StartDate, EndDate           # Contract operational timeframe
-│       ├── TotalPrice                   # [decimal(10,2)] System-computed monetary total
-│       ├── Status                       # [Enum] Active (0), Completed (1), Cancelled (2)
-│       └── CreatedByUserId              # [Audit] Creator user identifier
-│
-└── 📁 4. Identity & Access Domain (ASP.NET Core Identity)
-    ├── AspNetUsers                      # Operators, credentials & security stamps
-    ├── AspNetRoles                      # Permission definitions
-    ├── AspNetUserRoles                  # Operator-to-role associations
-    ├── AspNetUserClaims                 # Identity claim tokens
-    ├── AspNetRoleClaims                 # Policy claim rules
-    ├── AspNetUserLogins                 # External federated logins
-    └── AspNetUserTokens                 # Two-Factor and verification security tokens
-```
+### 📊 Dashboard (`/Home`)
+| Method | Route | Description | Access |
+| :---: | :--- | :--- | :---: |
+| `GET` | `/` or `/Home/Index` | Executive KPI analytics & recent activity | Authenticated |
+| `GET` | `/Home/Error` | Error diagnostics page | Public |
 
----
+### 🏢 Agency Branches (`/Agencies`)
+| Method | Route | Description | Access |
+| :---: | :--- | :--- | :---: |
+| `GET` | `/Agencies` | Branch directory with name search | Authenticated |
+| `GET` | `/Agencies/Details/{id}` | Detailed branch overview and fleet table | Authenticated |
+| `GET` | `/Agencies/Create` | Branch creation form | Authenticated |
+| `POST` | `/Agencies/Create` | Store new branch with ownership tag | Authenticated |
+| `GET` | `/Agencies/Edit/{id}` | Edit branch details | Owner Only |
+| `POST` | `/Agencies/Edit/{id}` | Update branch details | Owner Only |
+| `GET` | `/Agencies/Delete/{id}` | Deletion confirmation page | Owner Only |
+| `POST` | `/Agencies/Delete/{id}` | Delete branch and cascade to fleet | Owner Only |
 
-## 🛠️ Complete Tech Stack Reference
+### 🚗 Fleet Inventory (`/Cars`)
+| Method | Route | Description | Access |
+| :---: | :--- | :--- | :---: |
+| `GET` | `/Cars` | Fleet list with agency and status filters | Authenticated |
+| `GET` | `/Cars/Details/{id}` | Specs and complete rental history | Authenticated |
+| `GET` | `/Cars/Create` | Vehicle registration form | Authenticated |
+| `POST` | `/Cars/Create` | Register new vehicle | Authenticated |
+| `GET` | `/Cars/Edit/{id}` | Edit vehicle specs | Owner Only |
+| `POST` | `/Cars/Edit/{id}` | Update vehicle specs | Owner Only |
+| `GET` | `/Cars/Delete/{id}` | Vehicle deletion confirmation | Owner Only |
+| `POST` | `/Cars/Delete/{id}` | Remove vehicle (Restricted if rented) | Owner Only |
 
-| Layer | Component | Version | Package / Architecture Role |
-| :--- | :--- | :---: | :--- |
-| **Runtime & SDK** | [.NET 8.0 SDK](https://dotnet.microsoft.com/) | `8.0.8` | Modern C# 12 JIT runtime with native AOT and cross-platform capabilities |
-| **Web Framework** | [ASP.NET Core MVC](https://dotnet.microsoft.com/apps/aspnet/mvc) | `8.0.8` | High-throughput server-rendered Controller-Action architecture |
-| **Authentication** | [ASP.NET Core Identity EF](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.EntityFrameworkCore) | `8.0.8` | User management, secure password hashing, and cookie session token lifecycle |
-| **Data Access** | [EF Core SQL Server](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer) | `8.0.8` | Object-Relational Mapping (ORM) executing optimized parameterized SQL queries |
-| **Migration Tools** | [EF Core Tools & Design](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Design) | `8.0.8` | Code-First database schema scaffolding, snapshotting, and synchronization |
-| **Database** | [Microsoft SQL Server](https://www.microsoft.com/sql-server) | `2022-latest` | Enterprise relational database management engine with transactional ACID integrity |
-| **CSS System** | [Bootstrap 5](https://getbootstrap.com/) | `5.3.3` | Grid system, form validation visuals, flexbox layouts, and modal dialogues |
-| **Iconography** | [Bootstrap Icons](https://icons.getbootstrap.com/) | `1.11.3` | High-fidelity vector iconography across menus, buttons, and badges |
-| **Client Scripting** | [jQuery & Unobtrusive](https://jqueryvalidation.org/) | `3.7.1` / `4.0.0` | Client-side validation triggers prior to server transmission |
-| **Containerization** | [Docker](https://www.docker.com/) | Multi-Stage | Hardened container packaging with separate compilation and runtime stages |
-| **Orchestration** | [Docker Compose](https://docs.docker.com/compose/) | Compose v2 | Automated multi-container networking with active database health probing |
+### 👥 Customer Directory (`/Customers`)
+| Method | Route | Description | Access |
+| :---: | :--- | :--- | :---: |
+| `GET` | `/Customers` | Customer directory with search | Authenticated |
+| `GET` | `/Customers/Details/{id}` | Customer profile and past contracts | Authenticated |
+| `GET` | `/Customers/Create` | Customer registration form | Authenticated |
+| `POST` | `/Customers/Create` | Register customer with license info | Authenticated |
+| `GET` | `/Customers/Edit/{id}` | Edit customer details | Owner Only |
+| `POST` | `/Customers/Edit/{id}` | Update customer details | Owner Only |
+| `GET` | `/Customers/Delete/{id}` | Customer deletion confirmation | Owner Only |
+| `POST` | `/Customers/Delete/{id}` | Remove customer (Restricted if rented) | Owner Only |
 
----
-
-## 🌐 API Surface & Controller Route Catalog
-
-The platform exposes **40 action routes** through ASP.NET Core Endpoint Routing:
-
-### 1. Authentication & Security Routes (`/Account`)
-```http
-GET  /Account/Register          -> Render operator registration portal
-POST /Account/Register          -> Validate form, register Identity user & sign in
-GET  /Account/Login             -> Render operator login form (supports email or username)
-POST /Account/Login             -> Verify credentials & set persistent auth cookie
-POST /Account/Logout            -> Invalidate session & terminate cookie
-```
-
-### 2. Operational Analytics Routes (`/Home`)
-```http
-GET  /                          -> Redirect / load Executive Dashboard
-GET  /Home/Index                -> Aggregate total agencies, cars, revenue & recent contracts
-GET  /Home/Error                -> Diagnostics and error presentation view
-```
-
-### 3. Agency Branch Management Routes (`/Agencies`)
-```http
-GET  /Agencies                  -> List all agencies with optional name query (?searchString=)
-GET  /Agencies/Details/{id}     -> Display branch overview, car statistics & assigned fleet
-GET  /Agencies/Create           -> Render branch creation form
-POST /Agencies/Create           -> Validate and store new agency with creator ownership
-GET  /Agencies/Edit/{id}        -> Render edit view (Owner-restricted)
-POST /Agencies/Edit/{id}        -> Update agency branch details (Owner-restricted)
-GET  /Agencies/Delete/{id}      -> Render delete confirmation dialogue (Owner-restricted)
-POST /Agencies/Delete/{id}      -> Remove agency & cascade-delete assigned cars (Owner-restricted)
-```
-
-### 4. Fleet Inventory & Tracking Routes (`/Cars`)
-```http
-GET  /Cars                      -> List fleet with dual filtering (?agencyId=&status=)
-GET  /Cars/Details/{id}         -> View vehicle technical specs & complete rental history
-GET  /Cars/Create               -> Render vehicle registration form with agency select list
-POST /Cars/Create               -> Register new car into agency inventory
-GET  /Cars/Edit/{id}            -> Render vehicle edit form (Owner-restricted)
-POST /Cars/Edit/{id}            -> Update vehicle specifications (Owner-restricted)
-GET  /Cars/Delete/{id}          -> Render vehicle deletion confirmation (Owner-restricted)
-POST /Cars/Delete/{id}          -> Remove car (Restricted if historical rentals exist)
-```
-
-### 5. Client Registry Routes (`/Customers`)
-```http
-GET  /Customers                 -> List clients with name/phone search (?searchString=)
-GET  /Customers/Details/{id}    -> View client profile and historical booking contracts
-GET  /Customers/Create          -> Render driver registration form
-POST /Customers/Create          -> Register client with driving license number
-GET  /Customers/Edit/{id}       -> Render client edit form (Owner-restricted)
-POST /Customers/Edit/{id}       -> Update client contact information (Owner-restricted)
-GET  /Customers/Delete/{id}     -> Render deletion confirmation (Owner-restricted)
-POST /Customers/Delete/{id}     -> Remove client (Restricted if historical rentals exist)
-```
-
-### 6. Rental Booking & Contract Lifecycle Routes (`/Rentals`)
-```http
-GET  /Rentals                   -> List contracts with status filter (?status=)
-GET  /Rentals/Details/{id}      -> 3-column detailed overview (Car, Client, Contract)
-GET  /Rentals/Create            -> Render booking form with available vehicles & client list
-POST /Rentals/Create            -> Calculate price, lock car as Rented, create active contract
-GET  /Rentals/Edit/{id}         -> Render contract edit view (Owner-restricted)
-POST /Rentals/Edit/{id}         -> Update contract terms (Owner-restricted)
-GET  /Rentals/Delete/{id}       -> Render deletion confirmation (Owner-restricted)
-POST /Rentals/Delete/{id}       -> Remove contract (Owner-restricted)
-POST /Rentals/Return/{id}       -> Complete contract, mark Completed, free car to Available
-```
+### 📝 Rental Contracts (`/Rentals`)
+| Method | Route | Description | Access |
+| :---: | :--- | :--- | :---: |
+| `GET` | `/Rentals` | Contract directory with status filter | Authenticated |
+| `GET` | `/Rentals/Details/{id}` | 3-column breakdown (Car, Customer, Price) | Authenticated |
+| `GET` | `/Rentals/Create` | Booking form with available vehicles | Authenticated |
+| `POST` | `/Rentals/Create` | Compute price, lock car, activate lease | Authenticated |
+| `GET` | `/Rentals/Edit/{id}` | Edit contract terms | Owner Only |
+| `POST` | `/Rentals/Edit/{id}` | Update contract terms | Owner Only |
+| `GET` | `/Rentals/Delete/{id}` | Contract deletion confirmation | Owner Only |
+| `POST` | `/Rentals/Delete/{id}` | Cancel/remove contract | Owner Only |
+| `POST` | `/Rentals/Return/{id}` | Complete contract & free car to Available | Owner Only |
 
 ---
 
@@ -446,74 +345,71 @@ POST /Rentals/Return/{id}       -> Complete contract, mark Completed, free car t
 
 ```
 CarAgenciesMVC/
-├── 📁 Controllers/                     # Application HTTP Request Handlers
-│   ├── AccountController.cs            # Identity session management & credentials
-│   ├── AgenciesController.cs           # Agency branch management & ownership guards
-│   ├── CarsController.cs               # Fleet inventory, status tracking & filtering
-│   ├── CustomersController.cs          # Client registry & driver license records
-│   ├── HomeController.cs               # Executive KPI dashboard & revenue metrics
-│   └── RentalsController.cs            # Rental lifecycle, pricing & return triggers
+├── 📁 Controllers/                     # HTTP Request Handlers
+│   ├── AccountController.cs            # Auth, Login & Registration
+│   ├── AgenciesController.cs           # Agency branch management
+│   ├── CarsController.cs               # Fleet inventory & filtering
+│   ├── CustomersController.cs          # Customer & driver directory
+│   ├── HomeController.cs               # KPI Dashboard & analytics
+│   └── RentalsController.cs            # Booking engine & lifecycle
 │
-├── 📁 Data/                            # Persistence Infrastructure
-│   ├── ApplicationDbContext.cs         # EF Core DbContext with fluent relationship rules
-│   └── DbInitializer.cs                # Database bootstrapper with pre-seeded dataset
+├── 📁 Data/                            # Database Layer
+│   ├── ApplicationDbContext.cs         # EF Core DbContext with relationship mappings
+│   └── DbInitializer.cs                # Seed bootstrapper with pre-populated records
 │
-├── 📁 Migrations/                      # Schema Versioning & Evolution
-│   └── ApplicationDbContextModelSnapshot.cs # Complete schema snapshot of all 11 tables
+├── 📁 Migrations/                      # Database Snapshots
+│   └── ApplicationDbContextModelSnapshot.cs # Full schema snapshot of 11 tables
 │
-├── 📁 Models/                          # Domain Business Entities
-│   ├── Agency.cs                       # Branch representation with contact metadata
-│   ├── Car.cs                          # Vehicle specifications, daily rate & status
-│   ├── Customer.cs                     # Client profile with driver license number
-│   ├── Rental.cs                       # Binding contract between Car and Customer
-│   └── 📁 Enums/                       # Domain Enumerations
-│       ├── CarStatus.cs                # Available (0), Rented (1), UnderMaintenance (2)
-│       └── RentalStatus.cs             # Active (0), Completed (1), Cancelled (2)
+├── 📁 Models/                          # Core Domain Entities
+│   ├── Agency.cs                       # Branch entity
+│   ├── Car.cs                          # Vehicle specifications
+│   ├── Customer.cs                     # Driver registry
+│   ├── Rental.cs                       # Transactional contract
+│   └── 📁 Enums/                       # Domain Status Enums
+│       ├── CarStatus.cs                # Available, Rented, UnderMaintenance
+│       └── RentalStatus.cs             # Active, Completed, Cancelled
 │
-├── 📁 ViewModels/                      # Presentation Data Transfer Objects (DTOs)
-│   ├── AgencyDetailsViewModel.cs       # Branch stats & fleet count breakdowns
-│   ├── CarFormViewModel.cs             # Vehicle form wrapper with dynamic dropdowns
-│   ├── DashboardViewModel.cs           # Executive dashboard metrics & recent rentals
-│   ├── LoginViewModel.cs               # Authentication form with remember-me token
-│   ├── RegisterViewModel.cs            # Account registration with password policies
-│   └── RentalFormViewModel.cs          # Contract creation form with active inventory
+├── 📁 ViewModels/                      # Data Transfer Objects
+│   ├── AgencyDetailsViewModel.cs       # Branch stats & fleet breakdown
+│   ├── CarFormViewModel.cs             # Vehicle dropdown forms
+│   ├── DashboardViewModel.cs           # KPI cards & recent contracts
+│   ├── LoginViewModel.cs               # Sign-in credentials
+│   ├── RegisterViewModel.cs            # Registration form
+│   └── RentalFormViewModel.cs          # Booking form with available cars
 │
-├── 📁 Views/                           # Razor Presentation Templates (.cshtml)
-│   ├── 📁 Account/                     # Register.cshtml, Login.cshtml
-│   ├── 📁 Agencies/                    # Index, Details, Create, Edit, Delete
-│   ├── 📁 Cars/                        # Index, Details, Create, Edit, Delete
-│   ├── 📁 Customers/                   # Index, Details, Create, Edit, Delete
-│   ├── 📁 Home/                        # Index.cshtml (Dashboard), Error.cshtml
-│   ├── 📁 Rentals/                     # Index, Details, Create, Edit, Delete
-│   ├── 📁 Shared/                      # _Layout.cshtml, _ValidationScriptsPartial.cshtml
-│   ├── _ViewImports.cshtml             # Global tag helpers and namespace bindings
-│   └── _ViewStart.cshtml               # Shared layout master binding
+├── 📁 Views/                           # Razor View Templates (.cshtml)
+│   ├── 📁 Account/                     # Login & Register views
+│   ├── 📁 Agencies/                    # CRUD views for branches
+│   ├── 📁 Cars/                        # CRUD views for fleet
+│   ├── 📁 Customers/                   # CRUD views for customers
+│   ├── 📁 Home/                        # Dashboard view
+│   ├── 📁 Rentals/                     # Booking & details views
+│   └── 📁 Shared/                      # Master layout & validation partials
 │
-├── 📁 wwwroot/                         # Public Static Assets
+├── 📁 wwwroot/                         # Static Assets
 │   ├── 📁 css/site.css                 # 788-line custom Dark Theme UI Kit
-│   └── 📁 js/site.js                   # Bootstrap tooltips & deletion confirmations
+│   └── 📁 js/site.js                   # Client-side scripts
 │
-├── .dockerignore                       # Container build exclusion definitions
-├── appsettings.json                    # Connection strings, logging & hosting configs
-├── CarAgenciesMVC.csproj               # .NET 8 Project file with NuGet package dependencies
-├── docker-compose.yml                  # Two-service mesh configuration (Web + MSSQL 2022)
-├── Dockerfile                          # Multi-stage compilation & runtime definition
-└── Program.cs                          # Dependency injection, middleware & bootloader
+├── appsettings.json                    # Connection strings & configuration
+├── CarAgenciesMVC.csproj               # Project dependencies (.NET 8)
+├── docker-compose.yml                  # Multi-container orchestration
+├── Dockerfile                          # Multi-stage container build
+└── Program.cs                          # Pipeline & dependency injection
 ```
 
 ---
 
-## 🚀 Quick Start & Deployment
+## 🚀 Quick Start
 
-### Option 1: Native Local Development (.NET CLI)
+### Option A: Local Development (.NET CLI)
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/[YOUR-USERNAME]/CarAgenciesMVC.git
-   cd CarAgenciesMVC
+   git clone https://github.com/Mohamed-Abdelaty/Car-Agencies-Rental.git
+   cd Car-Agencies-Rental/CarAgenciesMVC
    ```
 
-2. **Configure Database Connection (`appsettings.json`):**
+2. **Verify Database Connection (`appsettings.json`):**
    ```json
    {
      "ConnectionStrings": {
@@ -522,67 +418,54 @@ CarAgenciesMVC/
    }
    ```
 
-3. **Restore & Compile:**
+3. **Restore & Run:**
    ```bash
    dotnet restore
    dotnet build
-   ```
-
-4. **Launch Application:**
-   ```bash
    dotnet run
    ```
-   *The database schema and initial test records will be automatically created on startup via `DbInitializer.Initialize()`.*
+   *The database schema and initial test records will be automatically created on startup.*
 
-5. **Open Browser:**
+4. **Open in Browser:**
    - HTTPS: `https://localhost:5001`
    - HTTP: `http://localhost:5000`
 
 ---
 
-### Option 2: Production Container Mesh (Docker Compose)
+### Option B: Docker Compose (Zero Configuration)
 
-Launch the entire stack with zero external dependencies:
+Run the entire application alongside SQL Server 2022 inside Docker:
 
-1. **Start Services in Background:**
+1. **Start the Multi-Container Stack:**
    ```bash
    docker compose up -d --build
    ```
 
-2. **Check Container Health:**
+2. **Check Container Status:**
    ```bash
    docker compose ps
    ```
-   *The web application will automatically delay initialization until SQL Server 2022 passes its internal healthcheck.*
 
-3. **Stream Service Logs:**
-   ```bash
-   docker compose logs -f webapp
-   ```
+3. **Access the Application:**
+   - **Web App:** `http://localhost:8080`
+   - **SQL Server:** `localhost:1433` (User: `sa`, Password: `CarAgencies@123`)
 
-4. **Access the Portal:**
-   - **Web Application:** `http://localhost:8080`
-   - **SQL Server Database:** `localhost:1433` (`CarAgenciesDb` | User: `sa` | Password: `CarAgencies@123`)
-
-5. **Stop Stack:**
+4. **Stop the Stack:**
    ```bash
    docker compose down
    ```
-   *(To wipe persistent database volumes, append `-v`: `docker compose down -v`)*
 
 ---
 
-## 👥 Authors & Acknowledgements
+## 👥 Authors
 
-Developed as the **Graduation Capstone Project for the Information Technology Institute (ITI) C# Track**:
+Developed as the **Graduation Final Project for the Information Technology Institute (ITI) C# Track**:
 
-- **Mohamed Abdelaty Mohamed Elshaboury** (ID: 75)
-- **Reem Ahmed Amin Hashish** (ID: 74)
+- **Mohamed Abdelaty Mohamed Elshaboury** ([@Elshaboury2005](https://github.com/Elshaboury2005)) — (ID: 75)
+- **Reem Ahmed Amin Hashish** — (ID: 74)
 
 ---
 
 ## 📄 License
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
-#   C a r - A g e n c i e s - R e n t a l  
- 
